@@ -65,7 +65,7 @@
 					view=this.weekView;				
 				}
 				var contentHtml=view.renderContent(this.current_time);
-				var headerHtml=$("<div class='header clearfloat'></div>");
+			var headerHtml = $("<div class='header clearfloat' id='header'></div>");
 				headerHtml.append("<span id='title' class='left'>"+view.title+"</span>");
 				headerHtml.append("<button id='prev' class='left lc-icon lc-icon-left' type='button'></button><button id='next' class='left lc-icon lc-icon-right' type='button'></button><button id='today' class='right' type='button'>Today</button>");
 					
@@ -101,7 +101,7 @@
 		},
 		renderContent:function(current){
 			this.initialize(current);
-			var table=$("<table class='full_wide' id='content'></table>");
+			var table = $("<table class='full_wide' id='lc-content'></table>");
 			table.append(this.renderThead()).append(this.renderTbody());
 			return table;
 		},
@@ -123,7 +123,7 @@
 
 			//月历begin留白
 			for(var i=0;i<sw;i++){
-				var td="<td><div class='date_div'></div></td>";
+				var td = "<td><div class='lc-date_div'></div></td>";
 				tr.append(td);
 			}
 			//获取数据
@@ -226,12 +226,12 @@
 			for(var j=1;j<=len;j++){
 				var td=$("<td></td>");
 				var day=new Date(start.getFullYear(),start.getMonth(),j);
-				var span=$("<span class='date'></span>");
+				var span = $("<span class='lc-date'></span>");
 				span.html(j);
-				var date_div=$("<div class='date_div'></div>");
+				var date_div = $("<div class='lc-date_div'></div>");
 
 				if(start.getFullYear()==real_today.getFullYear() &&start.getMonth()==real_today.getMonth(0) && j==real_today.getDate()){
-					td.addClass('table-highlight');
+					td.addClass('lc-table-highlight');
 				}
 				
 				var key=start.getFullYear()+"-"+(parseInt(start.getMonth())+1)+"-"+j;
@@ -250,16 +250,16 @@
 			var last=7-((len+sw)%7);
 			if(last!=7){
 				for(var k=count;k<count+last;k++){
-					tr.append("<td><div class='date_div'></div></td>");
+					tr.append("<td><div class='lc-date_div'></div></td>");
 				}
 			}	
 			tbody.append(tr.clone(true));		
 			return tbody;
 		},
 		renderEvent:function(data){
-			var lc_event=$("<div class='event_list'></div>");
+			var lc_event = $("<div class='lc-event_list'></div>");
 			for(var i=0;i<data.length;i++){
-				var ev=$("<span class='event'></span>");
+				var ev = $("<span class='lc-event'></span>");
 
 				ev.attr('id',i);
 				ev.html(data[i].start+"-"+data[i].end);
@@ -284,7 +284,7 @@
 		},
 		renderContent:function(current){
 			this.initialize(current);
-			var ul=$("<ul class='full_wide clearfloat' id='content'></ul>");
+			var ul = $("<ul class='full_wide clearfloat' id='lc-content'></ul>");
 			
 			var d= this.start;
 			var y=d.getFullYear();
@@ -294,7 +294,7 @@
 
 			// var event_data=get_eventData(new Date(y,m,day),new Date(y,m,day+7));
 			var  event_data={
-				'2016-1-4':[
+				'2016-1-11':[
 				{
 					start:'09:00',
 					end:'09:35',
@@ -332,7 +332,7 @@
 					other:'',
 				},
 				],
-				'2016-1-5':[
+				'2016-1-13':[
 				{
 					start:'09:00',
 					end:'09:35',
@@ -413,9 +413,9 @@
 				var li=$("<li></li>");
 
 				d=new Date(y,m,day+i);
-				var str="<div class='date'>"+this.renderDate(d)+"</div>";
+				var str = "<div class='lc-date'>" + this.renderDate(d) + "</div>";
 				if(real_today.getFullYear()==y && real_today.getMonth()==m && real_today.getDate()==(day+i)){
-					li.addClass("li-highlight").append(str);					
+					li.addClass("lc-li-highlight").append(str);
 				}else{
 					li.append(str);
 				}
@@ -433,13 +433,13 @@
 			return str;
 		},
 		renderEvent:function(data){
-			var morning=$("<div class='section'></div>");
-			var afternoon=$("<div class='section'></div>");
-			var evening=$("<div class='section'></div>");
+			var morning = $("<div class='lc-section'></div>");
+			var afternoon = $("<div class='lc-section'></div>");
+			var evening = $("<div class='lc-section'></div>");
 			for(var i=0;i<data.length;i++){
 				var t=data[i]; 
 				
-				var ev=$("<span class='event'></span>");
+				var ev = $("<span class='lc-event'></span>");
 				ev.attr('id',i);
 				ev.html(t.start+"-"+t.end);
 				events_detail(ev,data);
@@ -465,8 +465,8 @@ function events_detail(ev,data){
 		popover_content(e_id);	
 		popover_position(this);
 
-		$(this).closest("#content").find(".event").removeClass("event-highlight");
-		$(this).addClass("event-highlight");
+			$(this).closest("#lc-content").find(".lc-event").removeClass("lc-event-highlight");
+			$(this).addClass("lc-event-highlight");
 		$("#popover").show();
 		
 	});
@@ -474,10 +474,10 @@ function events_detail(ev,data){
 		var e = event || window.event;  
 		var elem = e.srcElement||e.target; 
 		
-		if(elem.className.indexOf("event")<0){
+			if (elem.className.indexOf("lc-event") < 0) {
 			if($(elem).closest("#popover").length==0){
 				$("#popover").hide(); 
-				$("#content").find(".event").removeClass("event-highlight");
+					$("#lc-content").find(".lc-event").removeClass("lc-event-highlight");
 			}			
 		}
 	} 
@@ -537,11 +537,11 @@ function popover_position(obj){
 		direction=0;
 	}
 	$("#popover").css({
-		"top": y-20,
+			"top": y-10,
 		"left": x  
 	});
 	$("#popover #arrow").css({
-		'top':arrow_y+20,
+			'top': arrow_y+10,
 		'left':arrow_x
 	});
 	if(direction){

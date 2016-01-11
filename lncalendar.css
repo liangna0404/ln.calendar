@@ -25,12 +25,13 @@ body{
 /**********************************************header************************************************/
 .header{
 	background-color:#ececec;
-	padding:30px 15px;
+	padding:25px 15px;
+	color:#777;
 }
 .header #title{
-	font-size: 26px;
+	font-size: 20px;
 	padding-right:28px;
-	width:230px;
+	width:140px;
 }
 .header button{
 	background-color: transparent;
@@ -41,7 +42,7 @@ body{
 	color:#add11c;
 }
 .header #today{	
-	border:1px solid transparent;
+	border:1px solid #ccc;
 	background-color: white;
 	border-radius: 15px;
 	padding:5px 15px;
@@ -51,7 +52,7 @@ body{
 	border:1px solid #add11c;
 }
 .lc-icon{
-	font-size: 26px;
+	font-size: 20px;
 	text-align: center;
 }
 .lc-icon:after{
@@ -66,18 +67,19 @@ body{
 }
 /**********************************************content************************************************/
 /*----------------------------------event--------------------------------------*/
-.event:before{
+.lc-event:before{
 	content:'\025CF';
 	color:#aad014;
 	padding-right:5px;
 }
-.event{
+.lc-event{
 	display: block;
 	list-style: disc inside;
 	cursor:pointer;
 	font-size: 14px;
+	margin:2px 4px;
 }
-.event:hover,.event-highlight{
+.lc-event:hover,.lc-event-highlight{
 	background-color: #f2f8dc;
 	border-radius:15px;
 	color:black;
@@ -87,19 +89,22 @@ table{
 	background-color:white;
 	border-collapse:collapse;
 }
-table th,td .event_div{
+table th,td .lc-event_div{
 	text-align: center;
 }
 table thead tr{
-	height:80px;
+	font-size: 14px;
+	height:60px;
 	color:#aad014;
 }
+table thead tr th{
+	padding-top:25px;
+}
 table tbody tr{
-	color:#bbb;
-	height:80px;
+	height:65px;
 	border-top:1px solid #ddd;
 }
-table td+td .date_div{
+table td+td .lc-date_div{
 	border-left:1px solid #ddd;
 }
 th,td,li{
@@ -108,29 +113,28 @@ th,td,li{
 td{
 	vertical-align: top;
 }
-td .date_div{
+td .lc-date_div{
 	padding:10px 0 0 10px;
-	height:35px;
 }
-td .date{
+td .lc-date{
+	font-size: 15px;
 	display: inline-block;
-	color:black;
 	padding:5px;
 	border-radius: 15px;
 	width:15px;
 	height:15px;
 	text-align:center;
+	color:#777;
 }
-table .event_list{
+table .lc-event_list{
 	text-align: center;
 }
-table .table-highlight{
+table .lc-table-highlight{
 	color:black;
 }
-table .table-highlight .date{
+table .lc-table-highlight .lc-date{
 	color:white;
 	background-color: #aad014;
-	font-weight: bold;
 
 }
 /*----------------------------------------------周历-------------------------------------------------*/
@@ -144,31 +148,38 @@ li{
 	text-align: center;
 	float: left;
 	height:100%;
-	color:#ccc;
+	color:#aaa;
 }
 li+li{
 	box-shadow: 1px 0 0 #ddd inset;
 }
-ul .date{
-	padding:10px 5px;
-	color:#e6f1ba;
+ul .lc-date{
+	padding-top:17px;
+	padding-bottom:15px;
+	padding:17px 0px;
+	color:#a6cb12;
 }
-ul .date span{
+ul .lc-date span{
 	display: block;
 }
-ul .date .number{
-	font-size: 60px;
+ul .lc-date .number{
+	font-size: 50px;
 	font-weight: bold;
 }
-ul .li-highlight{
+ul .lc-li-highlight{
 	color:black;
 	border-top:4px solid #8a7763;
 }
-ul .li-highlight .date{
+ul .lc-li-highlight .lc-date{
 	color:#8a7763;
+	padding-top:17px;
+	padding-bottom:11px;
 }
-ul .section{
+ul .lc-section{
 	height:100px;
+}
+ul li .lc-event{
+	padding:5px 0;
 }
 
 
